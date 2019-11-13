@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
   private int templeLevel = 0;
   private Boolean isCleared = false;
   private DateTime lastRespawnTime;
-  private int[] nextScoreTable = new int[] { 10, 10, 10 };
+  private int[] nextScoreTable = new int[] { 10, 20, 30 };
   void Start()
   {
     currentOrb = START_ORB;
@@ -80,11 +80,26 @@ public class GameManager : MonoBehaviour
         UnityEngine.Random.Range(-140.0f, -500.0f),
         0f
     );
+    int kind = UnityEngine.Random.Range(0, templeLevel + 1);
+    switch (kind)
+    {
+      case 0:
+        orb.GetComponent<OrbManager>().SetKind(OrbManager.ORB_KIND.BLUE);
+        break;
+      case 1:
+        orb.GetComponent<OrbManager>().SetKind(OrbManager.ORB_KIND.GREEN);
+        break;
+      case 2:
+        orb.GetComponent<OrbManager>().SetKind(OrbManager.ORB_KIND.PURPLE);
+        break;
+
+    }
+
   }
 
-  public void GetOrb()
+  public void GetOrb(int getScore)
   {
-    score++;
+    score += getScore;
     if (score > nextScore)
     { score = nextScore; }
     TempleLevelUpCheck();
