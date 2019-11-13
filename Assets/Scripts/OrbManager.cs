@@ -10,7 +10,6 @@ public class OrbManager : MonoBehaviour
   void Start()
   {
     gameManager = GameObject.Find("GameManager");
-    // Debug.Log(gameManager.GetComponent<GameManager>().GetOrb());
   }
 
   // Update is called once per frame

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
   private const int MAX_ORB = 10;
+  private const int START_ORB = 5;
+  private const int RESPAWN_TIME = 5;
 
   public GameObject orbPrefab;
   public GameObject canvasGame;
@@ -14,22 +17,48 @@ public class GameManager : MonoBehaviour
 
   private int score = 0;
   private int nextScore = 100;
+  private int currentOrb = 0;
+  private DateTime lastRespawnTime;
 
   void Start()
   {
-    for (int i = 0; i < MAX_ORB; i++)
+    currentOrb = START_ORB;
+    for (int i = 0; i < currentOrb; i++)
     {
       CreateOrb();
     }
+    lastRespawnTime = DateTime.UtcNow;
     RefreshScoreText();
   }
 
   // Update is called once per frame
   void Update()
   {
+    if (currentOrb < MAX_ORB)
+    {
+      TimeSpan timeSpan = DateTime.UtcNow - lastRespawnTime;
+      if (timeSpan >= TimeSpan.FromSeconds(RESPAWN_TIME))
+      {
+        while (timeSpan >= TimeSpan.FromSeconds(RESPAWN_TIME))
+        {
+          CreateNewOrb();
+          timeSpan -= TimeSpan.FromSeconds(RESPAWN_TIME);
+        }
+      }
+    }
 
   }
 
+  public void CreateNewOrb()
+  {
+    lastRespawnTime = DateTime.UtcNow;
+    if (currentOrb >= MAX_ORB)
+    {
+      return;
+    }
+    CreateOrb();
+    currentOrb++;
+  }
   public void CreateOrb()
   {
     GameObject orb = (GameObject)Instantiate(orbPrefab);
@@ -45,6 +74,7 @@ public class GameManager : MonoBehaviour
   {
     score++;
     RefreshScoreText();
+    currentOrb--;
   }
   void RefreshScoreText()
   {
