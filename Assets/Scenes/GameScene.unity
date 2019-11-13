@@ -281,6 +281,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81b8135373fd4c9d9bf28a959bae9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  templePicture:
+  - {fileID: 21300000, guid: 6d78f86a5044f4bb1be23dd4ddb453a7, type: 3}
+  - {fileID: 21300000, guid: 7f2d53e3ca8dc42d8aad77ac8faff6c6, type: 3}
+  - {fileID: 21300000, guid: 9ae2df561a015442fbb747a165642914, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,8 +413,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbPrefab: {fileID: 6596532606085443429, guid: 76591a26667b046e8b6d48bcc5b6b711,
     type: 3}
+  smokePrefab: {fileID: 6525412575192992804, guid: 487ccca08c54044219e54f7288265996,
+    type: 3}
+  kusudamaPrefab: {fileID: 6597413809795426881, guid: fc891b9bbf69043ec92611b6a3f823f4,
+    type: 3}
   canvasGame: {fileID: 988708411}
   textScore: {fileID: 957406302}
+  imageTemple: {fileID: 390349989}
 --- !u!1 &957406302
 GameObject:
   m_ObjectHideFlags: 0

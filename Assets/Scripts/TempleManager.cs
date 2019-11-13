@@ -24,7 +24,7 @@ public class TempleManager : MonoBehaviour
     GetComponent<Image>().sprite = templePicture[level];
   }
 
-  public void SetTemplePicture(int score, int nextScore)
+  public void SetTempleScale(int score, int nextScore)
   {
     float scale = 0.5f + (((float)score / (float)nextScore) / 2.0f);
     transform.localScale = new Vector3(scale, scale, 1.0f);
